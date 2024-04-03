@@ -1,8 +1,8 @@
 class GitlabCiLs < Formula
   desc "Gitlab CI Language Server"
   homepage "https://github.com/alesbrelih/gitlab-ci-ls"
-  url "https://github.com/alesbrelih/gitlab-ci-ls/archive/refs/tags/0.6.1.zip"
-  sha256 "41b5bd41b608fcab7b71dd831deaa9bb60268e0b6e020379f3ea20c5ed0e332e"
+  url "https://github.com/alesbrelih/gitlab-ci-ls/archive/refs/tags/0.7.1.zip"
+  sha256 "59e508124b1c66bbbbe76acf09cb8a7fa227a93d91511acb3b6c2d0ae1d3a146"
   license "MIT"
 
   depends_on "rust" => :build
@@ -12,15 +12,6 @@ class GitlabCiLs < Formula
   end
 
   test do
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # This test will fail and we won't accept that! For Homebrew/homebrew-core
-    # this will need to be a test that verifies the functionality of the
-    # software. Run the test with `brew test gitlab-ci-ls`. Options passed
-    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
     system "which gitlab-ci-ls"
   end
 end
