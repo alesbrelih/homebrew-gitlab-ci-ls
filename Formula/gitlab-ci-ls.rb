@@ -12,6 +12,6 @@ class GitlabCiLs < Formula
   end
 
   test do
-    system "which gitlab-ci-ls"
+    system `"which" "gitlab-ci-ls"`
   end
 end
