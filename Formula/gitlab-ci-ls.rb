@@ -1,8 +1,8 @@
 class GitlabCiLs < Formula
   desc "Gitlab CI Language Server"
   homepage "https://github.com/alesbrelih/gitlab-ci-ls"
-  url "https://github.com/alesbrelih/gitlab-ci-ls/archive/refs/tags/0.21.3.tar.gz"
-  sha256 "0ea3c14cff9596aaee7ca2cd6e2520b25f85d9772df3dc7ba4a06c9813f9717e"
+  url "https://github.com/alesbrelih/gitlab-ci-ls/archive/refs/tags/0.21.4.tar.gz"
+  sha256 "354419ad6b8e3c944970430824e85cb4cef40b537bf6bb13a92016d2a4060494"
   license "MIT"
 
   depends_on "rust" => :build
