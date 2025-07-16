@@ -40,5 +40,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add Formula/gitlab-ci-ls.rb
-          git commit -m "Update GitlabCiLs to version ${{ github.event.client_payload.version }}"
+          git commit -m "core: version ${{ github.event.client_payload.version }}"
           git push
