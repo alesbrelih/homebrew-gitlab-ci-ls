@@ -17,12 +17,14 @@ jobs:
           VERSION="${{ github.event.client_payload.version }}"
           VERSION=${VERSION#v}
 
-          TARBALL_URL="https://github.com/alesbrelih/gitlab-ci-ls/archive/refs/tags/${VERSION}.tar.gz"
-          if ! curl -sf --head "$TARBALL_URL" > /dev/null; then
-            echo "Tarball not found or not accessible: $TARBALL_URL"
+          TAG_URL="https://api.github.com/repos/alesbrelih/gitlab-ci-ls/git/refs/tags/${VERSION}"
+          echo "Checking if tag exists: $TAG_URL"
+          if ! curl -sf "$TAG_URL" > /dev/null; then
+            echo "Tag $VERSION does not exist in repository"
             exit 1
           fi
 
+          TARBALL_URL="https://github.com/alesbrelih/gitlab-ci-ls/archive/refs/tags/${VERSION}.tar.gz"
           NEW_SHA256=$(curl -sL "$TARBALL_URL" | sha256sum | cut -d' ' -f1)
 
           sed -i "s|url \".*\"|url \"$TARBALL_URL\"|" Formula/gitlab-ci-ls.rb
