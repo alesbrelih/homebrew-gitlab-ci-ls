@@ -1,0 +1,29 @@
+name: Update Version
+on:
+  repository_dispatch:
+    types: [version-update]
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update Homebrew formula
+        run: |
+          VERSION="${{ github.event.client_payload.version }}"
+          VERSION=${VERSION#v}
+
+          TARBALL_URL="https://github.com/alesbrelih/gitlab-ci-ls/archive/refs/tags/${VERSION}.tar.gz"
+          NEW_SHA256=$(curl -sL "$TARBALL_URL" | sha256sum | cut -d' ' -f1)
+
+          sed -i "s|url \".*\"|url \"$TARBALL_URL\"|" Formula/gitlab-ci-ls.rb
+          sed -i "s|sha256 \".*\"|sha256 \"$NEW_SHA256\"|" Formula/gitlab-ci-ls.rb
+
+          echo "Updated to version $VERSION"
+          echo "New SHA256: $NEW_SHA256"
+          echo "New File"
+          cat Formula/gitlab-ci-ls.rb
