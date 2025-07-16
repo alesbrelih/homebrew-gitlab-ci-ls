@@ -32,13 +32,13 @@ jobs:
 
           echo "Updated to version $VERSION"
           echo "New SHA256: $NEW_SHA256"
-          echo "New File"
+          echo "New File:"
           cat Formula/gitlab-ci-ls.rb
 
       - name: Commit and push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add GitlabCiLs.rb
+          git add Formula/gitlab-ci-ls.rb
           git commit -m "Update GitlabCiLs to version ${{ github.event.client_payload.version }}"
           git push
